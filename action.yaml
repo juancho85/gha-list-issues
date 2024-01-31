@@ -1,0 +1,13 @@
+name: Acción compuesta
+description: 'Acción de tirada de dados'
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v4
+    - name: Prueba con GH-CLI
+      run: gh issue list
+    - name: Prueba con llamada HTTP
+      run: |
+        curl https://api.github.com/repos/${{ github.repository }}/issues \
+        -H 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+        -H 'content-type: application/json'
