@@ -5,8 +5,10 @@ runs:
   steps:
     - uses: actions/checkout@v4
     - name: Prueba con GH-CLI
+      shell: bash
       run: gh issue list
     - name: Prueba con llamada HTTP
+      shell: bash
       run: |
         curl https://api.github.com/repos/${{ github.repository }}/issues \
         -H 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
